@@ -1,5 +1,6 @@
 using Mentoring.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace Mentoring.Api.Controllers;
 
@@ -15,6 +16,8 @@ public class TestController : BaseController
     [HttpGet]
     public IActionResult RunTest()
     {
+        Log.Information("Application terminated unexpectedly");
+
         var response = _myService.DoSomething();
         return Ok(response);
     }
