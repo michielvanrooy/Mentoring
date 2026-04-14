@@ -22,10 +22,6 @@ public class SomeOtherService : ISomeOtherService
         //    Log.Error(ex, "Something broke");
 
         //    return string.Empty;
-
-            //throw new Exception("Something broke");
-            //throw;
-            //throw ex;
         //}
     }
 }
