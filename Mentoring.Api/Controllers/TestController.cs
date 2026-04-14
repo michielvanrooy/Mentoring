@@ -1,12 +1,21 @@
+using Mentoring.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mentoring.Api.Controllers;
 
 public class TestController : BaseController
 {
+    private readonly IMyService _myService;
+
+    public TestController(IMyService myService)
+    {
+        _myService = myService;
+    }
+
     [HttpGet]
     public IActionResult RunTest()
     {
-        return Ok("Hello wolrd");
+        var response = _myService.DoSomething();
+        return Ok(response);
     }
 }

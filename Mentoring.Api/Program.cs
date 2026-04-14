@@ -7,6 +7,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+DependencyInjection.AddApplication(builder.Services);
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -16,8 +18,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-DependencyInjection.AddApplication(builder.Services);
 
 app.UseAuthorization();
 
