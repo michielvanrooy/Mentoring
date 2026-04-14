@@ -13,17 +13,15 @@ public class SomeOtherService : ISomeOtherService
 
     private string LetsTryAndSoSomethingFun(string theSomething)
     {
-        try
-        {
+        //try
+        //{
             throw new Exception("Something went horribly wrong and that is not fun");
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex, "Something broke");
+        //}
+        //catch (Exception ex)
+        //{
+        //    Log.Error(ex, "Something broke");
 
-            return string.Empty;
-
-            
-        }
+        //    return string.Empty;
+        //}
     }
 }
