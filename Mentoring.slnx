@@ -1,5 +1,4 @@
 <Solution>
   <Project Path="Mentoring.Api/Mentoring.Api.csproj" />
   <Project Path="Mentoring.Domain/Mentoring.Domain.csproj" />
-  <Project Path="Mentoring/Mentoring.csproj" />
 </Solution>
