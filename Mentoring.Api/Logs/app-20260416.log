@@ -1,0 +1,34 @@
+2026-04-16 12:15:08.670 +02:00 [ERR] An error occurred while trying to do something more fun with Lekker man, lekker
+System.Exception: Something went horribly wrong and that is not fun
+   at Mentoring.Domain.Services.SomeOtherService.LetsTryAndSoSomethingFun(String theSomething) in C:\Solutions\Mentoring\Mentoring.Domain\Services\SomeOtherService.cs:line 27
+   at Mentoring.Domain.Services.SomeOtherService.DoSomethingMoreFun(String theSomething) in C:\Solutions\Mentoring\Mentoring.Domain\Services\SomeOtherService.cs:line 12
+2026-04-16 12:18:20.713 +02:00 [ERR] Something went wrong in the test controller
+System.Exception: Something went horribly wrong and that is not fun
+   at Mentoring.Domain.Services.SomeOtherService.LetsTryAndSoSomethingFun(String theSomething) in C:\Solutions\Mentoring\Mentoring.Domain\Services\SomeOtherService.cs:line 16
+   at Mentoring.Domain.Services.SomeOtherService.DoSomethingMoreFun(String theSomething) in C:\Solutions\Mentoring\Mentoring.Domain\Services\SomeOtherService.cs:line 10
+   at Mentoring.Domain.Services.MyService.DoSomething() in C:\Solutions\Mentoring\Mentoring.Domain\Services\MyService.cs:line 16
+   at Mentoring.Api.Controllers.TestController.RunTest() in C:\Solutions\Mentoring\Mentoring.Api\Controllers\TestController.cs:line 21
+2026-04-16 12:25:46.542 +02:00 [ERR] Something went wrong in the test controller
+System.DivideByZeroException: Attempted to divide by zero.
+   at Mentoring.Domain.Services.SomeOtherService.LetsTryAndSoSomethingFun(String theSomething) in C:\Solutions\Mentoring\Mentoring.Domain\Services\SomeOtherService.cs:line 28
+   at Mentoring.Domain.Services.SomeOtherService.DoSomethingMoreFun(String theSomething) in C:\Solutions\Mentoring\Mentoring.Domain\Services\SomeOtherService.cs:line 10
+   at Mentoring.Domain.Services.MyService.DoSomething() in C:\Solutions\Mentoring\Mentoring.Domain\Services\MyService.cs:line 16
+   at Mentoring.Api.Controllers.TestController.RunTest() in C:\Solutions\Mentoring\Mentoring.Api\Controllers\TestController.cs:line 21
+2026-04-16 12:25:47.892 +02:00 [ERR] Something went wrong in the test controller
+System.DivideByZeroException: Attempted to divide by zero.
+   at Mentoring.Domain.Services.SomeOtherService.LetsTryAndSoSomethingFun(String theSomething) in C:\Solutions\Mentoring\Mentoring.Domain\Services\SomeOtherService.cs:line 28
+   at Mentoring.Domain.Services.SomeOtherService.DoSomethingMoreFun(String theSomething) in C:\Solutions\Mentoring\Mentoring.Domain\Services\SomeOtherService.cs:line 10
+   at Mentoring.Domain.Services.MyService.DoSomething() in C:\Solutions\Mentoring\Mentoring.Domain\Services\MyService.cs:line 16
+   at Mentoring.Api.Controllers.TestController.RunTest() in C:\Solutions\Mentoring\Mentoring.Api\Controllers\TestController.cs:line 21
+2026-04-16 12:25:48.398 +02:00 [ERR] Something went wrong in the test controller
+System.DivideByZeroException: Attempted to divide by zero.
+   at Mentoring.Domain.Services.SomeOtherService.LetsTryAndSoSomethingFun(String theSomething) in C:\Solutions\Mentoring\Mentoring.Domain\Services\SomeOtherService.cs:line 28
+   at Mentoring.Domain.Services.SomeOtherService.DoSomethingMoreFun(String theSomething) in C:\Solutions\Mentoring\Mentoring.Domain\Services\SomeOtherService.cs:line 10
+   at Mentoring.Domain.Services.MyService.DoSomething() in C:\Solutions\Mentoring\Mentoring.Domain\Services\MyService.cs:line 16
+   at Mentoring.Api.Controllers.TestController.RunTest() in C:\Solutions\Mentoring\Mentoring.Api\Controllers\TestController.cs:line 21
+2026-04-16 12:25:50.062 +02:00 [ERR] Something went wrong in the test controller
+System.DivideByZeroException: Attempted to divide by zero.
+   at Mentoring.Domain.Services.SomeOtherService.LetsTryAndSoSomethingFun(String theSomething) in C:\Solutions\Mentoring\Mentoring.Domain\Services\SomeOtherService.cs:line 28
+   at Mentoring.Domain.Services.SomeOtherService.DoSomethingMoreFun(String theSomething) in C:\Solutions\Mentoring\Mentoring.Domain\Services\SomeOtherService.cs:line 10
+   at Mentoring.Domain.Services.MyService.DoSomething() in C:\Solutions\Mentoring\Mentoring.Domain\Services\MyService.cs:line 16
+   at Mentoring.Api.Controllers.TestController.RunTest() in C:\Solutions\Mentoring\Mentoring.Api\Controllers\TestController.cs:line 21

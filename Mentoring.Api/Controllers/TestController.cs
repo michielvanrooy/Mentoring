@@ -16,7 +16,16 @@ public class TestController : BaseController
     [HttpGet]
     public IActionResult RunTest()
     {
-        var response = _myService.DoSomething();
-        return Ok(response);
+        //try
+        //{
+            var response = _myService.DoSomething();
+            return Ok(response);
+        //}
+        //catch (Exception ex)
+        //{
+        //    Log.Error(ex , "Something went wrong in the test controller");
+
+        //    return BadRequest("Broken");
+        //}
     }
 }

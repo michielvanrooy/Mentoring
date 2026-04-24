@@ -13,15 +13,34 @@ public class SomeOtherService : ISomeOtherService
 
     private string LetsTryAndSoSomethingFun(string theSomething)
     {
-        //try
-        //{
-            throw new Exception("Something went horribly wrong and that is not fun");
-        //}
-        //catch (Exception ex)
-        //{
-        //    Log.Error(ex, "Something broke");
+            Console.WriteLine("432345");
 
-        //    return string.Empty;
-        //}
+            Console.WriteLine("432345"); Console.WriteLine("432345");
+            Console.WriteLine("432345");
+
+
+            Console.WriteLine("432345");
+
+            var test2 = 0;
+
+            int test = 1 / test2;
+
+
+
+
+
+            Console.WriteLine("432345");
+
+            Console.WriteLine("432345");
+
+
+            return string.Empty;
+
     }
+}
+
+
+public class MyCalls
+{
+
 }

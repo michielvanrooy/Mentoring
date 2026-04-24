@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mentoring.Api", "Mentoring.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mentoring.Domain", "Mentoring.Domain\Mentoring.Domain.csproj", "{EA8178DC-5FF4-4168-B468-80178A51F873}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mentoring,App", "Mentoring,App\Mentoring,App.csproj", "{D2174AF5-3C48-4265-95F9-1706533C3B93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Montoring,Tests", "Montoring,Tests\Montoring,Tests.csproj", "{CE29D6E7-CAC7-4638-9C0B-FFB0D1BE91F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{EA8178DC-5FF4-4168-B468-80178A51F873}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA8178DC-5FF4-4168-B468-80178A51F873}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA8178DC-5FF4-4168-B468-80178A51F873}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2174AF5-3C48-4265-95F9-1706533C3B93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2174AF5-3C48-4265-95F9-1706533C3B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2174AF5-3C48-4265-95F9-1706533C3B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2174AF5-3C48-4265-95F9-1706533C3B93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE29D6E7-CAC7-4638-9C0B-FFB0D1BE91F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE29D6E7-CAC7-4638-9C0B-FFB0D1BE91F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE29D6E7-CAC7-4638-9C0B-FFB0D1BE91F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE29D6E7-CAC7-4638-9C0B-FFB0D1BE91F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
