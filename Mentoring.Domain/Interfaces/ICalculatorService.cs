@@ -2,6 +2,8 @@
 {
     public interface ICalculatorService
     {
-        bool IsLocked();
+        int AddNumbers(int number1, int number2);
+
+        double AddProfit();
     }
 }

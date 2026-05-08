@@ -11,22 +11,19 @@ public class CalculatorService : ICalculatorService
         _businessIntegration = businessIntegration;
     }
 
-    //public double AddProfit()
-    //{
-    //    var businessValue = _businessIntegration.GetBusinessTotalInventoryValue(100);
-
-    //    var profitValue = (businessValue + (businessValue * 0.2));
-
-    //    var roundedValue = Math.Round(profitValue, 2);
-
-    //    return roundedValue;
-    //}
-
-    public bool IsLocked()
+    public int AddNumbers(int number1, int number2)
     {
-        var customer = _businessIntegration.GetBusinessTotalInventoryValue(100);
-
-        return customer.IsCool && !customer.IsManco;
+        return number1 + number2;
     }
 
+    public double AddProfit()
+    {
+        var businessValue = _businessIntegration.GetBusinessTotalInventoryValue(100);
+
+        var profitValue = (businessValue + (businessValue * 0.2));
+
+        var roundedValue = Math.Round(profitValue, 2);
+
+        return roundedValue;
+    }
 }

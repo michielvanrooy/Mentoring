@@ -4,5 +4,5 @@ namespace Mentoring.Domain.Interfaces;
 
 public interface IBusinessIntegrationService
 {
-    CustomerDto GetBusinessTotalInventoryValue(int someValue);
+    double GetBusinessTotalInventoryValue(int someValue);
 }
