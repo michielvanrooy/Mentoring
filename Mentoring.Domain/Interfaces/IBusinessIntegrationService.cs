@@ -1,8 +1,6 @@
-﻿using Mentoring.Domain.Services;
-
-namespace Mentoring.Domain.Interfaces;
+﻿namespace Mentoring.Domain.Interfaces;
 
 public interface IBusinessIntegrationService
 {
-    double GetBusinessTotalInventoryValue(int someValue);
+    double GetBusinessTotalInventoryValue();
 }

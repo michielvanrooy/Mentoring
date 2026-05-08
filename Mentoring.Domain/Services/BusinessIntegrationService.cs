@@ -4,7 +4,7 @@ namespace Mentoring.Domain.Services;
 
 public class BusinessIntegrationService : IBusinessIntegrationService
 {
-    public double GetBusinessTotalInventoryValue(int someValue)
+    public double GetBusinessTotalInventoryValue()
     {
         return 100.00;
     }

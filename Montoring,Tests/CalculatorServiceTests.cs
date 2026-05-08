@@ -13,8 +13,6 @@ public class CalculatorServiceTests
     public void Given_AddNumbers_With_Numbers_10_and_20_Returns_30()
     {
         // Arrange
-        _businessIntegrationMock.Setup(x => x.GetBusinessTotalInventoryValue(100)).Returns(100);
-
         var calculator = new CalculatorService(_businessIntegrationMock.Object);
 
         // Act
@@ -28,7 +26,7 @@ public class CalculatorServiceTests
     public void Given_AddProfit_With_InventoryValue_100_Returns_120()
     {
         // Arrange
-        _businessIntegrationMock.Setup(x => x.GetBusinessTotalInventoryValue(100)).Returns(100);
+        _businessIntegrationMock.Setup(x => x.GetBusinessTotalInventoryValue()).Returns(100);
 
         var calculator = new CalculatorService(_businessIntegrationMock.Object);
 
