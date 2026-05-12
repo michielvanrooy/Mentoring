@@ -11,6 +11,9 @@ public static class DependencyInjection
         services.AddTransient<IMyService, MyService>();
         services.AddTransient<ISomeOtherService, SomeOtherService>();
 
+        services.AddTransient<IBusinessIntegrationService, BusinessIntegrationService>();
+        services.AddTransient<ICalculatorService, CalculatorService>();
+
         return services;
     }
 }
