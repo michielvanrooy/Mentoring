@@ -18,7 +18,7 @@ public class CalculatorService : ICalculatorService
 
     public double AddProfit()
     {
-        var businessValue = _businessIntegration.GetBusinessTotalInventoryValue(100);
+        var businessValue = _businessIntegration.GetBusinessTotalInventoryValue();
 
         var profitValue = (businessValue + (businessValue * 0.2));
 
