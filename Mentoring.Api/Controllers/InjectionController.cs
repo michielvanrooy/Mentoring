@@ -31,8 +31,6 @@ public class InjectionController : BaseController
         _multiTransientService = multiTransientService;
     }
 
-    
-
     [HttpGet]
     public IActionResult GetNumbers()
     {

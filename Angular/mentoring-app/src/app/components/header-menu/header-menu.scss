@@ -1,0 +1,31 @@
+nav {
+  background-color: #e0e0e0;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  a {
+    color: #444;
+    text-decoration: none;
+    padding: 1.2rem 2rem;
+    display: inline-block;
+    transition: all 0.2s ease;
+    border-bottom: 3px solid transparent;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: #d0d0d0;
+      color: #000;
+    }
+
+    &.active {
+      color: #007bff;
+      border-bottom-color: #007bff;
+      background-color: #d5d5d5;
+      font-weight: 600;
+    }
+  }
+}

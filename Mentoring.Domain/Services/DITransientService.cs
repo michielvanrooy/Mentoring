@@ -15,4 +15,19 @@ public class DITransientService : IDITransientService
     {
         _mySeriveNumber++;
     }
+
+    private void Execeuet()
+    {
+        var number = 2; 
+
+        addOne(number);
+
+        Console.Write(number);
+    }
+
+    public void addOne(int value)
+    {
+        value = value + 1;
+    }
+
 }
