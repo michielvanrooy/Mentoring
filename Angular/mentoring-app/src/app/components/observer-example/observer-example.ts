@@ -12,12 +12,10 @@ export class ObserverExample implements OnDestroy {
   messages = signal<string[]>([]);
   isSubscribed = signal(false);
   private subscription: any = null;
-  private messageObservable: Observable<string>;
+  private messageObservable$: Observable<string>;
 
   constructor() {
-    // Create an Observable that emits messages over time
-    // This is what an Observable IS - a stream of data over time
-    this.messageObservable = new Observable<string>((observer) => {
+    this.messageObservable$ = new Observable<string>((observer) => {
       let count = 0;
       const messages = [
         'Hello from Observable!',
@@ -27,7 +25,6 @@ export class ObserverExample implements OnDestroy {
         'Remember to unsubscribe!'
       ];
 
-      // Emit messages every 2 seconds
       const interval = setInterval(() => {
         if (count < messages.length) {
           observer.next(messages[count]);
@@ -38,36 +35,28 @@ export class ObserverExample implements OnDestroy {
         }
       }, 2000);
 
-      // Cleanup function - runs when unsubscribed
       return () => {
         clearInterval(interval);
-        console.log('Observable cleaned up');
       };
     });
   }
 
   subscribe() {
     if (this.subscription) {
-      return; // Already subscribed
+      return;
     }
 
     this.messages.set([]);
     this.isSubscribed.set(true);
 
-    // Subscribe to the Observable
-    this.subscription = this.messageObservable.subscribe({
+    this.subscription = this.messageObservable$.subscribe({
       next: (message) => {
-        // Called each time the Observable emits
-        console.log('Received:', message);
         this.messages.update(msgs => [...msgs, message]);
       },
       error: (err) => {
-        // Called if an error occurs
         console.error('Error:', err);
       },
       complete: () => {
-        // Called when the Observable completes
-        console.log('Observable completed');
         this.messages.update(msgs => [...msgs, '✓ Stream completed']);
         this.isSubscribed.set(false);
         this.subscription = null;
@@ -75,21 +64,9 @@ export class ObserverExample implements OnDestroy {
     });
   }
 
-  unsubscribe() {
+  ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
-      this.subscription = null;
-      this.isSubscribed.set(false);
-      this.messages.update(msgs => [...msgs, '✗ Unsubscribed']);
     }
-  }
-
-  reset() {
-    this.unsubscribe();
-    this.messages.set([]);
-  }
-
-  ngOnDestroy() {
-    this.unsubscribe();
   }
 }

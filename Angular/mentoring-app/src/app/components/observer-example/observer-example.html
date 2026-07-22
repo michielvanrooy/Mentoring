@@ -1,16 +1,8 @@
 <app-header-menu></app-header-menu>
 
 <div class="container">
-  <h1>Understanding Observables</h1>
-  
-  <div class="explanation">
-    <h2>What is an Observable?</h2>
-    <p>Think of an Observable as a <strong>stream of data over time</strong>, like a river flowing. 
-       You can <strong>subscribe</strong> to listen to the data, and <strong>unsubscribe</strong> to stop listening.</p>
-  </div>
 
   <div class="demo">
-    <h2>Live Demo</h2>
     
     <div class="controls">
       <button 
@@ -20,19 +12,9 @@
         Subscribe
       </button>
       
-      <button 
-        (click)="unsubscribe()" 
-        [disabled]="!isSubscribed()"
-        class="btn btn-warning">
-        Unsubscribe
-      </button>
-      
-      <button 
-        (click)="reset()" 
-        class="btn btn-secondary">
-        Reset
-      </button>
     </div>
+
+//Add textBox with Observable
 
     <div class="status">
       <strong>Status:</strong> 
@@ -55,17 +37,5 @@
         </ul>
       }
     </div>
-  </div>
-
-  <div class="key-points">
-    <h2>Key Points:</h2>
-    <ul>
-      <li>📡 <strong>Observable:</strong> A source that emits data over time</li>
-      <li>👂 <strong>Subscribe:</strong> Start listening to the Observable</li>
-      <li>📨 <strong>next():</strong> Receives each emitted value</li>
-      <li>✅ <strong>complete():</strong> Called when the stream finishes</li>
-      <li>❌ <strong>error():</strong> Called if something goes wrong</li>
-      <li>🛑 <strong>Unsubscribe:</strong> Stop listening and cleanup resources</li>
-    </ul>
   </div>
 </div>

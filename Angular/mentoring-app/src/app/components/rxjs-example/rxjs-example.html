@@ -1,3 +1,213 @@
 
 <app-header-menu></app-header-menu>
-<p>rxjs-example works!</p>
+
+<div class="container">
+  <h1>Understanding RxJS Operators</h1>
+  
+  <div class="explanation">
+    <h2>What are RxJS Operators?</h2>
+    <p>Operators are <strong>functions that transform, filter, or combine data</strong> flowing through Observables. 
+       Think of them as a <strong>pipeline</strong> where data flows through and gets transformed at each stage.</p>
+  </div>
+
+  <!-- Example 1: Map -->
+  <div class="demo-card">
+    <h2>1. Map Operator - Transform Values</h2>
+    <p class="description">The <code>map</code> operator transforms each value. Here we multiply each number by 10.</p>
+    
+    <div class="code-example">
+      <pre>interval(800).pipe(
+  take(5),
+  map(x => (x + 1) * 10)  // Transform: 1→10, 2→20, 3→30...
+)</pre>
+    </div>
+
+    <div class="controls">
+      <button 
+        (click)="startMapExample()" 
+        [disabled]="mapActive()"
+        class="btn btn-primary">
+        Start
+      </button>
+      <button 
+        (click)="stopMapExample()" 
+        [disabled]="!mapActive()"
+        class="btn btn-warning">
+        Stop
+      </button>
+    </div>
+
+    <div class="results">
+      <strong>Output:</strong>
+      @if (mapNumbers().length === 0) {
+        <span class="empty">Click Start to see results</span>
+      } @else {
+        <div class="result-items">
+          @for (num of mapNumbers(); track $index) {
+            <span class="result-badge">{{ num }}</span>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Example 2: Filter -->
+  <div class="demo-card">
+    <h2>2. Filter Operator - Keep Only Some Values</h2>
+    <p class="description">The <code>filter</code> operator only emits values that pass a condition. Here we keep only even numbers.</p>
+    
+    <div class="code-example">
+      <pre>interval(600).pipe(
+  take(10),
+  map(x => x + 1),        // 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+  filter(x => x % 2 === 0) // Keep only: 2, 4, 6, 8, 10
+)</pre>
+    </div>
+
+    <div class="controls">
+      <button 
+        (click)="startFilterExample()" 
+        [disabled]="filterActive()"
+        class="btn btn-primary">
+        Start
+      </button>
+      <button 
+        (click)="stopFilterExample()" 
+        [disabled]="!filterActive()"
+        class="btn btn-warning">
+        Stop
+      </button>
+    </div>
+
+    <div class="results">
+      <strong>Output:</strong>
+      @if (filterNumbers().length === 0) {
+        <span class="empty">Click Start to see results</span>
+      } @else {
+        <div class="result-items">
+          @for (num of filterNumbers(); track $index) {
+            <span class="result-badge">{{ num }}</span>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Example 3: Combined -->
+  <div class="demo-card">
+    <h2>3. Combining Operators - The Power of Pipes</h2>
+    <p class="description">Chain multiple operators together: get odd numbers, square them, format as text.</p>
+    
+    <div class="code-example">
+      <pre>interval(700).pipe(
+  take(8),
+  map(x => x + 1),         // 1, 2, 3, 4, 5, 6, 7, 8
+  filter(x => x % 2 !== 0), // Keep odd: 1, 3, 5, 7
+  map(x => x * x),          // Square: 1, 9, 25, 49
+  map(x => `Result: ${{ '{' }}x`)  // Format as string
+)</pre>
+    </div>
+
+    <div class="controls">
+      <button 
+        (click)="startCombinedExample()" 
+        [disabled]="combinedActive()"
+        class="btn btn-primary">
+        Start
+      </button>
+      <button 
+        (click)="stopCombinedExample()" 
+        [disabled]="!combinedActive()"
+        class="btn btn-warning">
+        Stop
+      </button>
+    </div>
+
+    <div class="results">
+      <strong>Output:</strong>
+      @if (combinedResults().length === 0) {
+        <span class="empty">Click Start to see results</span>
+      } @else {
+        <div class="result-list">
+          @for (result of combinedResults(); track $index) {
+            <div class="result-item">{{ result }}</div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Example 4: Practical Search -->
+  <div class="demo-card highlight">
+    <h2>4. Practical Example - Search with Debounce</h2>
+    <p class="description">Real-world use case: search that waits for user to stop typing before searching.</p>
+    
+    <div class="code-example">
+      <pre>fromEvent(input, 'input').pipe(
+  map(event => event.target.value),
+  debounceTime(500),        // Wait 500ms after typing stops
+  distinctUntilChanged(),   // Only if value changed
+  map(term => term.toLowerCase())
+)</pre>
+    </div>
+
+    <div class="search-demo">
+      <input 
+        #searchInput
+        type="text" 
+        placeholder="Type to search (Angular, React, Vue, etc.)..."
+        class="search-input"
+        (focus)="setupSearch(searchInput)"
+        [(ngModel)]="searchTerm">
+      
+      <div class="search-results">
+        @if (searchTerm() && searchResults().length > 0) {
+          <div class="results-header">Found {{ searchResults().length }} results:</div>
+          <ul>
+            @for (result of searchResults(); track result) {
+              <li>{{ result }}</li>
+            }
+          </ul>
+        } @else if (searchTerm() && searchResults().length === 0) {
+          <div class="no-results">No results found</div>
+        } @else {
+          <div class="search-hint">💡 Start typing to search...</div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button (click)="resetAll()" class="btn btn-secondary">Reset All Examples</button>
+  </div>
+
+  <div class="key-points">
+    <h2>Common RxJS Operators:</h2>
+    <div class="operators-grid">
+      <div class="operator-card">
+        <h3>map</h3>
+        <p>Transform each value</p>
+      </div>
+      <div class="operator-card">
+        <h3>filter</h3>
+        <p>Keep values that pass a test</p>
+      </div>
+      <div class="operator-card">
+        <h3>debounceTime</h3>
+        <p>Wait before emitting</p>
+      </div>
+      <div class="operator-card">
+        <h3>distinctUntilChanged</h3>
+        <p>Skip duplicate consecutive values</p>
+      </div>
+      <div class="operator-card">
+        <h3>take</h3>
+        <p>Emit only first N values</p>
+      </div>
+      <div class="operator-card">
+        <h3>switchMap</h3>
+        <p>Switch to new observable</p>
+      </div>
+    </div>
+  </div>
+</div>

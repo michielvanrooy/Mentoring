@@ -1,2 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Mentoring.ObserverDemo;
+
+var subject = new Subject();
+
+var observerA = new Observer("Piet");
+subject.Attach(observerA);
+
+//var observerB = new Observer("Koos");
+//subject.Attach(observerB);
+
+subject.SomeBusinessLogic();
+
+
