@@ -5,8 +5,11 @@ var subject = new Subject();
 var observerA = new Observer("Piet");
 subject.Attach(observerA);
 
-//var observerB = new Observer("Koos");
-//subject.Attach(observerB);
+var observerB = new Observer("Koos");
+subject.Attach(observerB);
+
+var observerC = new ObserverCustom("Sannie");
+subject.Attach(observerC);
 
 subject.SomeBusinessLogic();
 

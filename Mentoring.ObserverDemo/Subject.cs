@@ -18,7 +18,6 @@ public class Subject : ISubject
 
     public void Attach(IObserver observer)
     {
-        Console.WriteLine("Subject: Attached an observer.");
         this._observers.Add(observer);
     }
 

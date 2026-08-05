@@ -1,20 +1,26 @@
-import { Component, OnDestroy, signal } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, AfterViewInit, OnDestroy, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Observable, tap } from 'rxjs';
 import { HeaderMenu } from '../header-menu/header-menu';
 
 @Component({
   selector: 'app-observer-example',
-  imports: [HeaderMenu],
+  imports: [HeaderMenu, ReactiveFormsModule],
   templateUrl: './observer-example.html',
   styleUrl: './observer-example.scss',
 })
-export class ObserverExample implements OnDestroy {
+export class ObserverExample implements OnInit, OnDestroy {
   messages = signal<string[]>([]);
   isSubscribed = signal(false);
   private subscription: any = null;
-  private messageObservable$: Observable<string>;
+  private messageObservable$!: Observable<string>;
 
-  constructor() {
+  // Text input observable
+  textControl = new FormControl('');
+  textChanges = signal<string[]>([]);
+
+  ngOnInit() {
+    // Setup message observable
     this.messageObservable$ = new Observable<string>((observer) => {
       let count = 0;
       const messages = [
@@ -39,6 +45,19 @@ export class ObserverExample implements OnDestroy {
         clearInterval(interval);
       };
     });
+
+
+    //Text box
+    this.textControl.valueChanges
+      .pipe(
+        tap(value => {
+          this.textChanges.update(changes => [
+          ...changes, 
+          `Text changed: "${value}" (length: ${value!.length})`
+          ]);
+        }),
+      )
+      .subscribe();
   }
 
   subscribe() {
@@ -62,6 +81,11 @@ export class ObserverExample implements OnDestroy {
         this.subscription = null;
       }
     });
+  }
+
+  clearTextChanges() {
+    this.textChanges.set([]);
+    this.textControl.setValue('');
   }
 
   ngOnDestroy() {
