@@ -1,0 +1,71 @@
+<app-header-menu></app-header-menu>
+
+<div class="container">
+
+  <div class="demo">
+    
+    
+
+    <div class="text-observer-section">
+
+        <div class="controls">
+        <button 
+            (click)="subscribe()" 
+            [disabled]="isSubscribed()"
+            class="btn btn-primary">
+            Subscribe
+        </button>
+        
+        </div>
+
+        <div class="status">
+        <strong>Status:</strong> 
+        @if (isSubscribed()) {
+            <span class="subscribed">🟢 Subscribed - Listening for messages</span>
+        } @else {
+            <span class="unsubscribed">🔴 Not Subscribed</span>
+        }
+        </div>
+
+        <div class="messages">
+        <h3>Messages Received:</h3>
+        @if (messages().length === 0) {
+            <p class="empty">No messages yet. Click Subscribe to start receiving!</p>
+        } @else {
+            <ul>
+            @for (message of messages(); track $index) {
+                <li>{{ message }}</li>
+            }
+            </ul>
+        }
+        </div>
+    </div>
+
+    <!-- Text Input Observable Example -->
+    <div class="text-observer-section">
+      <h3>Live Text Input Observer</h3>
+      <p class="description">Watch how the Observable captures every keystroke in real-time!</p>
+      
+      <input 
+        type="text" 
+        placeholder="Start typing to see the observable in action..."
+        class="text-input"
+        [formControl]="textControl">
+      
+      <button (click)="clearTextChanges()" class="btn btn-secondary btn-small">Clear History</button>
+
+      <div class="text-changes">
+        <strong>Observable Events ({{ textChanges().length }}):</strong>
+        @if (textChanges().length === 0) {
+          <p class="empty">No changes yet. Type in the box above!</p>
+        } @else {
+          <div class="changes-list">
+            @for (change of textChanges(); track $index) {
+              <div class="change-item">{{ change }}</div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
