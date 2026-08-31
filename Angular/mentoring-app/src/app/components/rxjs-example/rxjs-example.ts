@@ -1,7 +1,7 @@
 import { Component, OnDestroy, signal } from '@angular/core';
 import { HeaderMenu } from '../header-menu/header-menu';
-import { interval, fromEvent, Subscription, of } from 'rxjs';
-import { map, filter, take, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { interval, fromEvent, Subscription, of, from } from 'rxjs';
+import { map, filter, take, debounceTime, distinctUntilChanged, concatMap, delay, tap } from 'rxjs/operators';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -30,6 +30,11 @@ export class RxjsExample implements OnDestroy {
   searchTerm = signal('');
   searchResults = signal<string[]>([]);
   private searchSubscription?: Subscription;
+
+  // Example 5: Messages over time (like Observer example but with RxJS pipe)
+  pipeMessages = signal<string[]>([]);
+  pipeActive = signal(false);
+  private pipeSubscription?: Subscription;
 
   private readonly sampleData = [
     'Angular', 'React', 'Vue', 'Svelte',
@@ -153,15 +158,55 @@ export class RxjsExample implements OnDestroy {
     this.combinedActive.set(false);
   }
 
+  // Example 5: Messages over time using RxJS pipe (same as Observer example)
+  startPipeExample() {
+    if (this.pipeActive()) return;
+    
+    this.pipeMessages.set([]);
+    this.pipeActive.set(true);
+
+    const messages = [
+      'Hello from RxJS pipe!',
+      'Observables emit data over time...',
+      'You can subscribe to receive updates',
+      'Multiple subscribers can listen',
+      'Remember to unsubscribe!'
+    ];
+
+    // Using RxJS operators to emit messages over time
+    this.pipeSubscription = from(messages)
+      .pipe(
+        concatMap((message, index) => 
+          of(message).pipe(delay(2000)) // 2 second delay between each message
+        ),
+        tap(message => {
+          this.pipeMessages.update(msgs => [...msgs, message]);
+        })
+      )
+      .subscribe({
+        complete: () => {
+          this.pipeMessages.update(msgs => [...msgs, '✓ Stream completed']);
+          this.pipeActive.set(false);
+        }
+      });
+  }
+
+  stopPipeExample() {
+    this.pipeSubscription?.unsubscribe();
+    this.pipeActive.set(false);
+  }
+
   resetAll() {
     this.stopMapExample();
     this.stopFilterExample();
     this.stopCombinedExample();
+    this.stopPipeExample();
     this.mapNumbers.set([]);
     this.filterNumbers.set([]);
     this.combinedResults.set([]);
     this.searchResults.set([]);
     this.searchTerm.set('');
+    this.pipeMessages.set([]);
   }
 
   ngOnDestroy() {
@@ -169,5 +214,70 @@ export class RxjsExample implements OnDestroy {
     this.filterSubscription?.unsubscribe();
     this.combinedSubscription?.unsubscribe();
     this.searchSubscription?.unsubscribe();
+    this.pipeSubscription?.unsubscribe();
   }
 }
+
+
+
+
+// EXAMPLES
+
+// Promise
+
+// async getUsers(term: string): Promise<any[]> {
+//   const res = await fetch(`/api/users?q=${encodeURIComponent(term)}`);
+//   if (!res.ok) throw new Error('Request failed');
+//   return res.json();
+// }
+
+// Observable
+
+// getUsers(term: string): Observable<any[]> {
+//   return this.http
+//     .get<any[]>(`/api/users?q=${encodeURIComponent(term)}`)
+//     .pipe(
+//       map(users => users ?? []),
+//       catchError(() => throwError(() => new Error('Request failed')))
+//     );
+// }
+
+// Combine Api calls
+
+// getUsersWithRoles(term: string): Observable<any[]> {
+//   return forkJoin({
+//     users: this.getUsers(term),
+//     roles: this.http.get<any[]>('/api/roles')
+//   }).pipe(
+//     map(({ users, roles }) =>
+//       users.map(user => ({
+//         ...user,
+//         role: roles.find(r => r.id === user.roleId) ?? null
+//       }))
+//     )
+//   );
+// }
+
+// Make the call
+
+// this.userService.getUsersWithRoles(term).subscribe({
+//   next: data => {
+//     this.usersWithRoles = data;
+//     this.loading = false;
+//   },
+//   error: err => {
+//     this.error = err.message ?? 'Something went wrong';
+//     this.loading = false;
+//   }
+// });
+
+
+// PIPE
+
+// Before you return this data do the following to it. like an ETL
+
+// map → transform values
+// filter → keep some values
+// tap → side effects (logging, debug)
+// catchError → recover from errors
+// switchMap → call another Observable based on previous result

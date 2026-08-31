@@ -104,7 +104,7 @@
   map(x => x + 1),         // 1, 2, 3, 4, 5, 6, 7, 8
   filter(x => x % 2 !== 0), // Keep odd: 1, 3, 5, 7
   map(x => x * x),          // Square: 1, 9, 25, 49
-  map(x => `Result: ${{ '{' }}x`)  // Format as string
+  map(x => `Result: $&#123;x&#125;`)  // Format as string
 )</pre>
     </div>
 
@@ -177,6 +177,71 @@
     </div>
   </div>
 
+  <!-- Example 5: Messages over Time (same as Observer example) -->
+  <div class="demo-card highlight">
+    <h2>5. Messages Over Time - RxJS Pipe Version</h2>
+    <p class="description">This does <strong>exactly the same</strong> as the Observer example, but using RxJS operators: <code>from()</code>, <code>map()</code>, <code>concatMap()</code>, and <code>delay()</code>.</p>
+    
+    <div class="code-example">
+      <pre>from(messages).pipe(
+  map((message, index) => `$&#123;index + 1&#125;. $&#123;message&#125;`),  // Add index
+  concatMap(message => 
+    of(message).pipe(delay(2000))  // 2 second delay per message
+  ),
+  tap(message => &#123;
+    // Add message to array as it arrives
+    this.pipeMessages.update(msgs => [...msgs, message]);
+  &#125;)
+)</pre>
+    </div>
+
+    <div class="controls">
+      <button 
+        (click)="startPipeExample()" 
+        [disabled]="pipeActive()"
+        class="btn btn-primary">
+        Subscribe
+      </button>
+      <button 
+        (click)="stopPipeExample()" 
+        [disabled]="!pipeActive()"
+        class="btn btn-warning">
+        Stop
+      </button>
+    </div>
+
+    <div class="status">
+      <strong>Status:</strong> 
+      @if (pipeActive()) {
+        <span class="subscribed">🟢 Subscribed - Listening for messages</span>
+      } @else {
+        <span class="unsubscribed">🔴 Not Subscribed</span>
+      }
+    </div>
+
+    <div class="results">
+      <strong>Messages:</strong>
+      @if (pipeMessages().length === 0) {
+        <span class="empty">Click Subscribe to receive messages</span>
+      } @else {
+        <div class="message-list">
+          @for (msg of pipeMessages(); track $index) {
+            <div class="message-item">{{ msg }}</div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="comparison">
+      <strong>💡 Key Difference:</strong>
+      <ul>
+        <li><strong>Observer example:</strong> Creates a custom Observable from scratch with setInterval</li>
+        <li><strong>RxJS pipe example:</strong> Uses built-in operators (from, concatMap, delay) to achieve the same result</li>
+        <li>Both emit messages over time and complete when done!</li>
+      </ul>
+    </div>
+  </div>
+
   <div class="actions">
     <button (click)="resetAll()" class="btn btn-secondary">Reset All Examples</button>
   </div>
@@ -205,8 +270,16 @@
         <p>Emit only first N values</p>
       </div>
       <div class="operator-card">
-        <h3>switchMap</h3>
-        <p>Switch to new observable</p>
+        <h3>concatMap</h3>
+        <p>Map and concat in order</p>
+      </div>
+      <div class="operator-card">
+        <h3>delay</h3>
+        <p>Delay each emission</p>
+      </div>
+      <div class="operator-card">
+        <h3>tap</h3>
+        <p>Perform side effects</p>
       </div>
     </div>
   </div>
