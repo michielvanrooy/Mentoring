@@ -1,0 +1,12 @@
+<app-header-menu></app-header-menu>
+
+<section class="panel" aria-labelledby="non-state-title">
+	<label for="message">Message</label>
+	<input id="message" name="message" type="text" placeholder="Enter a message" (input)="onMessageChange($event)">
+</section>
+
+<app-non-state-display [message]="message"></app-non-state-display>
+
+<app-non-state-display [message]="message"></app-non-state-display>
+
+<app-non-state-display [message]="message"></app-non-state-display>

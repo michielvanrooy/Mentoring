@@ -13,5 +13,13 @@ export const routes: Routes = [
   {
     path: 'rxjs',
     loadComponent: () => import('./components/rxjs-example/rxjs-example').then(m => m.RxjsExample)
+  },
+  {
+    path: 'state-example',
+    loadComponent: () => import('./components/state-example/state-example').then(m => m.StateExample)
+  },
+  {
+    path: 'non-state-example',
+    loadComponent: () => import('./components/non-state-example/non-state-example').then(m => m.NonStateExample)
   }
 ];
